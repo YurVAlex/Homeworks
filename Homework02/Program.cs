@@ -28,9 +28,9 @@ class Program
             Console.Write("Ошибка ввода. Введите число (например 1,75): ");
         }
 
-        Console.WriteLine($"\nПривет, {name}!");
-        Console.WriteLine($"\tВаш возраст: {age} лет.");
-        Console.WriteLine($"\t\tВаш рост: {height} м.");
+        Console.WriteLine($"\nПривет, {name}!" +
+                          $"\n\tВаш возраст: {age} лет." +
+                          $"\n\t\tВаш рост: {height} м.");
     }
 
     static void Task2()
@@ -57,12 +57,12 @@ class Program
         var quotient2 = Quotient(operand2, operand1);
 
         var resultsBlock = $"""
-        Сумма двух чисел:      {sum}
-        Разность числа 1 и 2:  {difference1}
-        Разность числа 2 и 1:  {difference2}
-        Произведение чисел:    {product}
-        Частное числа 1 и 2:   {quotient1}
-        Частное числа 2 и 1:   {quotient2}
+        Сумма двух чисел:                  {sum}
+        Разность первого и второго числа:  {difference1}
+        Разность второго и первого числа:  {difference2}
+        Произведение чисел:                {product}
+        Частное первого и второго числа:   {quotient1}
+        Частное второго и первого числа:   {quotient2}
         """;
 
         Console.WriteLine(resultsBlock);
