@@ -4,10 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        while (true)
-        {
-            Task1();
-        }
+        Task1();
+        Task2();
     }
 
     static void Task1()
@@ -34,5 +32,35 @@ class Program
             " Ваш возраст - число нечётное.";
 
         Console.WriteLine(result);
+    }
+
+    static void Task2()
+    {
+
+
+        bool firstValue = BoolInput("Please enter the first boolean value");
+        bool secondValue = BoolInput("Please enter the second boolean value");
+
+        var resultBlock = $"""
+        ------------------------------------------------------------------------------------------
+        |      p      |      q      |     p & q     |     p | q     |     p ^ q     |     !p     |
+        ------------------------------------------------------------------------------------------
+
+        """;
+    }
+
+    static bool BoolInput (string message)
+    {
+        bool value;
+
+        Console.WriteLine(message);
+
+        while (!bool.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("Input error. Please enter a boolean" +
+                              "value (eg \"true\" or \"false\"):");
+        }
+
+        return value;
     }
 }
