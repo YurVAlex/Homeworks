@@ -38,9 +38,10 @@ class Program
     {
         bool[] bools = new bool[6];
 
-        var results = "     ";
-        var formatedTrue = "true          ";
-        var formatedFalse = "false         ";
+        var columnWidth = 14;
+        var results = string.Empty;
+        var formatedTrue = "true".PadRight(columnWidth);
+        var formatedFalse = "false".PadRight(columnWidth);
 
         BoolInput("\nPlease enter the first boolean value:", out bools[0]);
         BoolInput("Please enter the second boolean value:", out bools[1]);
@@ -59,7 +60,7 @@ class Program
         ------------------------------------------------------------------------------------
         |      p      |      q      |    p & q    |    p | q    |    p ^ q    |     !p     |
         ------------------------------------------------------------------------------------
-        {results} 
+             {results} 
         """;
 
         Console.WriteLine(resultBlock);
