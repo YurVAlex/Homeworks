@@ -36,31 +36,43 @@ class Program
 
     static void Task2()
     {
+        bool[] bools = new bool[6];
 
+        var results = "     ";
+        var formatedTrue = "true          ";
+        var formatedFalse = "false         ";
 
-        bool firstValue = BoolInput("Please enter the first boolean value");
-        bool secondValue = BoolInput("Please enter the second boolean value");
+        BoolInput("\nPlease enter the first boolean value:", out bools[0]);
+        BoolInput("Please enter the second boolean value:", out bools[1]);
+
+        bools[2] = bools[0] & bools[1];
+        bools[3] = bools[0] | bools[1];
+        bools[4] = bools[0] ^ bools[1];
+        bools[5] = !bools[0];
+
+        foreach (bool current in bools)
+        {
+            results += current ? formatedTrue : formatedFalse;
+        }
 
         var resultBlock = $"""
-        ------------------------------------------------------------------------------------------
-        |      p      |      q      |     p & q     |     p | q     |     p ^ q     |     !p     |
-        ------------------------------------------------------------------------------------------
-
+        ------------------------------------------------------------------------------------
+        |      p      |      q      |    p & q    |    p | q    |    p ^ q    |     !p     |
+        ------------------------------------------------------------------------------------
+        {results} 
         """;
+
+        Console.WriteLine(resultBlock);
     }
 
-    static bool BoolInput (string message)
+    static void BoolInput(string message, out bool value)
     {
-        bool value;
-
         Console.WriteLine(message);
 
         while (!bool.TryParse(Console.ReadLine(), out value))
         {
-            Console.WriteLine("Input error. Please enter a boolean" +
+            Console.WriteLine("Input error. Please enter a boolean " +
                               "value (eg \"true\" or \"false\"):");
         }
-
-        return value;
     }
 }
