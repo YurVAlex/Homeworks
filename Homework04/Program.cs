@@ -5,6 +5,8 @@ class Program
     static void Main(string[] args)
     {
         Task1();
+        Task2();
+        Task3();
     }
 
     static void Task1()
@@ -39,7 +41,22 @@ class Program
 
         foreach (var number in numbers)
             Console.Write(number + " ");
+    }
 
-        Console.ReadKey();
+    static void Task2()
+    {
+        Console.WriteLine("\n\nAll two-digit numbers multiples of 5:");
+
+        for (int i = -95; i < 96; i += 5)
+            Console.Write(i + " ");
+    }
+
+    static void Task3()
+    {
+        Console.WriteLine("\n\nSequence of numbers -20, -40, ..., -100 " +
+                          "using cycle with postcondition check:");
+
+        for (int i = -20; i >= -100; i -= 20)
+            Console.WriteLine(i);
     }
 }
