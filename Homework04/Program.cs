@@ -17,6 +17,8 @@ class Program
         Task3();
 
         SkipToNext();
+
+        Task4();
     }
 
     static void Task1()
@@ -56,7 +58,7 @@ class Program
     static void Task2()
     {
         Console.WriteLine("All two-digit numbers multiples of 5" +
-                          " including negative double digits:");
+                          " (including negative double digits):");
 
         for (int i = -95; i < 96; i += 5)
         {
@@ -69,10 +71,32 @@ class Program
     {
         var number = 0;
 
-        Console.WriteLine("Sequence of numbers -20, -40, ..., -100 in column:");
+        Console.Write("Sequence of numbers -20, -40, ..., -100:\n\n");
 
         do Console.WriteLine(number -= 20);
         while (number > -100);
+    }
+
+    static void Task4()
+    {
+        string userInput;
+
+        while (true)
+        {
+            Console.WriteLine("Please enter the character:");
+            userInput = Console.ReadLine().ToLower();
+
+            var result = userInput switch
+            {
+                "w" => "Фигура перемещена вверх\n",
+                "s" => "Фигура перемещена вниз\n",
+                "a" => "Фигура перемещена влево\n",
+                "d" => "Фигура перемещена вправо\n",
+                _ => "Неверный ввод попробуйте ещё раз...\n"
+            };
+
+            Console.WriteLine(result);
+        }
     }
 
     static void SkipToNext()
