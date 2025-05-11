@@ -1,18 +1,28 @@
-﻿namespace Homework04;
+﻿using System;
+
+namespace Homework04;
 
 class Program
 {
     static void Main(string[] args)
     {
         Task1();
+
+        SkipToNext();
+
         Task2();
+
+        SkipToNext();
+
         Task3();
+
+        SkipToNext();
     }
 
     static void Task1()
     {
         int[] numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-        int index; // common for index-based loops
+        int index; // common to loops
 
         Console.WriteLine("Iterating through an array using " +
                           "\"for\" control flow statement" +
@@ -45,18 +55,30 @@ class Program
 
     static void Task2()
     {
-        Console.WriteLine("\n\nAll two-digit numbers multiples of 5:");
+        Console.WriteLine("All two-digit numbers multiples of 5" +
+                          " including negative double digits:");
 
         for (int i = -95; i < 96; i += 5)
-            Console.Write(i + " ");
+        {
+            if (i <= -10 || i >= 10)
+                Console.Write(i + " ");
+        }
     }
 
     static void Task3()
     {
-        Console.WriteLine("\n\nSequence of numbers -20, -40, ..., -100 " +
-                          "using cycle with postcondition check:");
+        var number = 0;
 
-        for (int i = -20; i >= -100; i -= 20)
-            Console.WriteLine(i);
+        Console.WriteLine("Sequence of numbers -20, -40, ..., -100 in column:");
+
+        do Console.WriteLine(number -= 20);
+        while (number > -100);
+    }
+
+    static void SkipToNext()
+    {
+        Console.Write("\n\nTo continue, press any key");
+        Console.ReadKey();
+        Console.Clear();
     }
 }
