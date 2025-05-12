@@ -7,17 +7,8 @@ class Program
     static void Main(string[] args)
     {
         Task1();
-
-        SkipToNext();
-
         Task2();
-
-        SkipToNext();
-
         Task3();
-
-        SkipToNext();
-
         Task4();
     }
 
@@ -53,6 +44,8 @@ class Program
 
         foreach (var number in numbers)
             Console.Write(number + " ");
+
+        SkipToNext();
     }
 
     static void Task2()
@@ -62,9 +55,11 @@ class Program
 
         for (int i = -95; i < 96; i += 5)
         {
-            if (i <= -10 || i >= 10)
+            if (i < -9 || i > 9)
                 Console.Write(i + " ");
         }
+
+        SkipToNext();
     }
 
     static void Task3()
@@ -75,6 +70,8 @@ class Program
 
         do Console.WriteLine(number -= 20);
         while (number > -100);
+
+        SkipToNext();
     }
 
     static void Task4()
@@ -83,7 +80,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Please enter the character:");
+            Console.WriteLine("Пожалуйста, введите символ:");
             userInput = Console.ReadLine().ToLower();
 
             var result = userInput switch
@@ -92,7 +89,7 @@ class Program
                 "s" => "Фигура перемещена вниз\n",
                 "a" => "Фигура перемещена влево\n",
                 "d" => "Фигура перемещена вправо\n",
-                _ => "Неверный ввод попробуйте ещё раз...\n"
+                _ => "Фигура не перемещена\n"
             };
 
             Console.WriteLine(result);
