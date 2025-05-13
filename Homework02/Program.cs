@@ -67,6 +67,7 @@ class Program
 
         Console.WriteLine(resultsBlock);
     }
+    
     static string Quotient(double value1, double value2)
     {
         return (value2 != 0) ?
