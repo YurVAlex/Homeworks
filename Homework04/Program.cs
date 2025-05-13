@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Homework04;
+﻿namespace Homework04;
 
 class Program
 {
@@ -50,8 +48,8 @@ class Program
 
     static void Task2()
     {
-        Console.WriteLine("All two-digit numbers multiples of 5" +
-                          " (including negative double digits):");
+        Console.Write("All two-digit numbers multiples of 5" +
+                      " (including negative double digits):\n");
 
         for (int i = -95; i < 96; i += 5)
         {
