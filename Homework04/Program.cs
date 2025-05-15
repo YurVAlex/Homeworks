@@ -20,28 +20,36 @@ class Program
                           "\n(explicit iteration control):");
 
         for (index = 0; index < numbers.Length;)
+        {
             Console.Write(numbers[index++] + " ");
+        }
 
         Console.WriteLine("\n\nIterating through an array using " +
                           "\"do - while\" control flow statement" +
                           "\n(cycle with postcondition check):");
 
-        do Console.Write(numbers[--index] + " ");
-        while (index > 0);
+        do
+        {
+            Console.Write(numbers[--index] + " ");
+        } while (index > 0);
 
         Console.WriteLine("\n\nIterating through an array using " +
                           "\"while\" control flow statement" +
                           "\n(cycle with precondition check):");
 
         while (index < numbers.Length)
+        {
             Console.Write(numbers[index++] + " ");
+        }
 
         Console.WriteLine("\n\nIterating through an array using " +
                           "\"foreach\" control flow statement" +
                           "\n(collection-based iteration):");
 
         foreach (var number in numbers)
+        {
             Console.Write(number + " ");
+        }
 
         SkipToNext();
     }
@@ -54,7 +62,9 @@ class Program
         for (int i = -95; i < 96; i += 5)
         {
             if (i < -9 || i > 9)
+            {
                 Console.Write(i + " ");
+            }
         }
 
         SkipToNext();
@@ -66,8 +76,10 @@ class Program
 
         Console.Write("Sequence of numbers -20, -40, ..., -100:\n\n");
 
-        do Console.WriteLine(number -= 20);
-        while (number > -100);
+        do
+        {
+            Console.WriteLine(number -= 20);
+        } while (number > -100);
 
         SkipToNext();
     }
