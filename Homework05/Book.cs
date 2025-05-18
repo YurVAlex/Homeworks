@@ -8,19 +8,34 @@ public class Book
 
     public string Title
     {
-        get { return _title; }
-        set { _title = value; }
+        get 
+        { 
+            return _title; 
+        }
+        set 
+        { 
+            _title = value; 
+        }
     }
 
     public string Author
     {
-        get { return _author; }
-        set { _author = value; }
+        get 
+        { 
+            return _author; 
+        }
+        set 
+        { 
+            _author = value; 
+        }
     }
 
     public int Pages
     {
-        get { return _pages; }
+        get 
+        { 
+            return _pages; 
+        }
         set
         {
             if (value > 0)
