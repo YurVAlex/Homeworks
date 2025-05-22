@@ -6,13 +6,30 @@ public class Manager(string name, string position) : EmployeeBase(name, position
 
     public override void GetDetails()
     {
-        string projects = string.Empty;
+        Console.WriteLine($"\nManager ({Position}): {Name}.\nCurrent projects:\n");
 
-        foreach (var project in Projects)
+        if (Projects.Count > 0)
         {
-            projects += project.Name + "\n";
+            foreach (var project in Projects)
+            {
+                project.DisplayProjectInfo();
+            }
         }
+        else
+        {
+            Console.WriteLine("No current projects.");
+        }
+    }
 
-        Console.WriteLine($"{this.GetType} {Name}, current projects: \n{projects}");
+    public class Project(string name = "Noname", DateOnly deadline = default)
+    {
+        public string ProjectName { get; set; } = name;
+
+        public DateOnly Deadline { get; set; } = deadline;
+
+        public void DisplayProjectInfo()
+        {
+            Console.WriteLine($"{ProjectName}, deadline: {Deadline}");
+        }
     }
 }
