@@ -1,25 +1,42 @@
-﻿using static Homework06.Manager;
+﻿namespace Homework06;
 
-namespace Homework06;
-
-public class Worker(string name, string position) : EmployeeBase(name, position) // make internal?
+public class Worker(string name, string position, params string[] skills) :
+             EmployeeBase(name, position)
 {
-    public List<string> Skills { get; set; } // params?
+    public List<string> Skills { get; set; } = new List<string>(skills) ?? [];
 
     public override void GetDetails()
     {
-        Console.WriteLine($"\nWorker ({Position}): {Name}.\nHas skills:\n");
+        Console.Write($"\nWorker ({Position}): {Name}.\n\n");
 
-        if (Skills.Count > 0)
+        DisplayAllSkills();
+    }
+
+    public void AddSkill(string skill)
+    {
+        Skills.Add(skill);
+    }
+
+    public void RemoveSkill(string skill)
+    {
+        Skills.Remove(skill);
+    }
+
+    public void DisplayAllSkills()
+    {
+        if (Skills.Count == 0)
         {
-            foreach (var skill in Skills)
-            {
-                Console.WriteLine(skill);
-            }
+            Console.Write("No skills data.\n");
+        }
+        else if (Skills.Count == 1)
+        {
+            Console.Write($"Has skill:\n{Skills[0]}\n");
         }
         else
         {
-            Console.WriteLine("No skills data.");
+            Console.Write("Has skills:\n");
+            Skills.Sort();
+            Skills.ForEach(skill => Console.WriteLine(skill));
         }
     }
 }
