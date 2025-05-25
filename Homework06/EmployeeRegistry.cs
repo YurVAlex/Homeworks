@@ -2,11 +2,17 @@
 
 public static class EmployeeRegistry
 {
+    // Static list to store all employees
     private static List<EmployeeBase> _employees = [];
 
     public static void AddEmployee(EmployeeBase employee)
     {
         _employees.Add(employee);
+    }
+
+    public static void SortEmployees()
+    {
+        _employees = _employees.OrderBy(_ => _.Name).ToList();
     }
 
     public static void ListAllEmployees()
@@ -15,27 +21,27 @@ public static class EmployeeRegistry
         {
             Console.Write("The list of employees is empty.\n");
         }
-        else 
+        else
         {
-            Console.Write($"List of employees:\n");
-            _employees.Sort();
-            _employees.ForEach(employe => employe.GetDetails());
+            Console.Write($"\nList of employees:\n");
+            _employees.ForEach(_ => _.GetDetails());
         }
     }
 
+    // Finds and displays an employee by name (case-insensitive)
     public static void FindEmployee(string name)
     {
-        var employee = _employees.Find(_ => 
-        _.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        var employee = _employees.Find(_ =>
+            _.Name.Equals(name.Trim(), StringComparison.OrdinalIgnoreCase));
 
         if (employee != null)
         {
-            Console.Write($"The employee has been found.\n");
+            Console.Write($"\nThe employee has been found.\n");
             employee.GetDetails();
         }
         else
         {
-            Console.Write($"Employee with name \"{name}\" not found.\n");
+            Console.Write($"\nEmployee with name \"{name}\" not found.\n");
         }
     }
 }

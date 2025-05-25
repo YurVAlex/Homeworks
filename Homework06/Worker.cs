@@ -3,11 +3,12 @@
 public class Worker(string name, string position, params string[] skills) :
              EmployeeBase(name, position)
 {
-    public List<string> Skills { get; set; } = new List<string>(skills) ?? [];
+    // List of worker's skills, initialized from constructor arguments
+    public List<string> Skills { get; set; } = [.. skills];
 
     public override void GetDetails()
     {
-        Console.Write($"\nWorker ({Position}): {Name}.\n\n");
+        Console.Write($"\nWorker ({Position}): {Name}.\n");
 
         DisplayAllSkills();
     }
