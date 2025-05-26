@@ -25,19 +25,13 @@ public class Worker(string name, string position, params string[] skills) :
 
     public void DisplayAllSkills()
     {
-        if (Skills.Count == 0)
+        var message = Skills.Count switch
         {
-            Console.Write("No skills data.\n");
-        }
-        else if (Skills.Count == 1)
-        {
-            Console.Write($"Has skill:\n{Skills[0]}\n");
-        }
-        else
-        {
-            Console.Write("Has skills:\n");
-            Skills.Sort();
-            Skills.ForEach(skill => Console.WriteLine(skill));
-        }
+            0 => "No skills data.\n",
+            1 => $"Has skill:\n{Skills[0]}\n",
+            _ => $"Has skills:\n{string.Join("\n", Skills)}"
+        };
+
+        Console.WriteLine(message);
     }
 }

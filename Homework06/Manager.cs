@@ -1,9 +1,9 @@
 ﻿namespace Homework06;
 
-public class Manager(string name, string position, int experience = 0) :
+public class Manager(string name, string position, uint experience = 0) :
              EmployeeBase(name, position)
 {
-    public int Experience { get; set; } = experience;
+    public uint Experience { get; set; } = experience;
 
     // List of projects the manager is responsible for
     public List<Project> Projects { get; set; } = [];
