@@ -8,6 +8,7 @@ public class Program
         var worker1 = new Worker("Cringer", "Developer");
         worker1.GetDetails();
         worker1.RemoveSkill("C#"); // Removing non-existing skill
+        worker1.AddSkill("C++");
 
         TestMessage("Worker with skills");
         var worker2 = new Worker("Alice May", "QA", "Selenium", "Python");

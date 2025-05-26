@@ -27,8 +27,8 @@ public class Worker(string name, string position, params string[] skills) :
     {
         var message = Skills.Count switch
         {
-            0 => "No skills data.\n",
-            1 => $"Has skill:\n{Skills[0]}\n",
+            0 => "No skills data.",
+            1 => $"Has skill:\n{Skills[0]}",
             _ => $"Has skills:\n{string.Join("\n", Skills)}"
         };
 
