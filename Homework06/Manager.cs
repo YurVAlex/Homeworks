@@ -1,9 +1,15 @@
 ﻿namespace Homework06;
 
-public class Manager(string name, string position, uint experience = 0) :
+public class Manager(string name, string position, int experience = 0) :
              EmployeeBase(name, position)
 {
-    public uint Experience { get; set; } = experience;
+    private int _experience = experience < 0 ? 0 : experience;
+
+    public int Experience
+    {
+        get => _experience;
+        set => _experience = value < 0 ? 0 : value;
+    }
 
     // List of projects the manager is responsible for
     public List<Project> Projects { get; set; } = [];
@@ -29,7 +35,7 @@ public class Manager(string name, string position, uint experience = 0) :
         var marker = project.IndexOf(',');
 
         Projects.Add(marker == -1 ?
-                     new Project(project) :
+                     new Project(project.Trim()) :
                      new Project(project[..marker], project[(marker + 1)..].Trim()));
     }
 
@@ -40,23 +46,11 @@ public class Manager(string name, string position, uint experience = 0) :
         if (temp != null)
         {
             Projects.Remove(temp);
-            Console.Write($"Project \"{projectName}\" deleted.\n");
+            Console.Write($"\nProject \"{projectName}\" deleted.\n");
         }
         else
         {
-            Console.Write($"Error. Project \"{projectName}\" not found.\n");
-        }
-    }
-
-    public class Project(string name = "Noname", string deadline = "Not defined")
-    {
-        public string ProjectName { get; set; } = name;
-
-        public string Deadline { get; set; } = deadline;
-
-        public void DisplayProjectInfo()
-        {
-            Console.Write($"{ProjectName}, deadline: {Deadline}\n");
+            Console.Write($"\nError. Project \"{projectName}\" not found.\n");
         }
     }
 
@@ -72,6 +66,18 @@ public class Manager(string name, string position, uint experience = 0) :
             Console.Write($"Project{(Projects.Count == 1 ? "" : "s")}:\n");
 
             Projects.ForEach(project => project.DisplayProjectInfo());
+        }
+    }
+
+    public class Project(string name = "Noname", string deadline = "Not defined")
+    {
+        public string ProjectName { get; set; } = name;
+
+        public string Deadline { get; set; } = deadline;
+
+        public void DisplayProjectInfo()
+        {
+            Console.Write($"{ProjectName}, deadline: {Deadline}\n");
         }
     }
 }
