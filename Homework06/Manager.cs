@@ -1,9 +1,8 @@
 ﻿namespace Homework06;
 
-public class Manager(string name, string position, int experience = 0) :
-             EmployeeBase(name, position)
+public class Manager : EmployeeBase
 {
-    private int _experience = experience < 0 ? 0 : experience;
+    private int _experience;
 
     public int Experience
     {
@@ -12,7 +11,13 @@ public class Manager(string name, string position, int experience = 0) :
     }
 
     // List of projects the manager is responsible for
-    public List<Project> Projects { get; set; } = [];
+    public List<Project> Projects { get; } = new();
+
+    public Manager(string name, string position, int experience = 0)
+        : base(name, position)
+    {
+        Experience = experience;
+    }
 
     public override void GetDetails()
     {
