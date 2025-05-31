@@ -5,37 +5,31 @@ public class Program
     static void Main(string[] args)
     {
         Task1();
-
-
-
     }
 
     public static void Task1()
     {
-        string newPromptMessage = "Enter text to check if a string is a palindrome. \n",
-               noInputPromptMessage = "No input provided. Please enter some text. \n",
-               exitPromptMessage = "To move to next task enter \"next\"\n",
-               isPalindromeMessage = "The entered string is a palindrome!",
-               isNotPalindromeMessage = "The entered string is not a palindrome!",
-               userInput = string.Empty; // To enum this
-
-        while (userInput != "exit")
+        while (true)
         {
-            ShowMessage("Task 1 - palindrome string check!");
-            Console.Write(newPromptMessage + exitPromptMessage);
+            Output.Print(Header.PalindromeTask);
+            Output.Print(Prompt.UserInput);
+            Output.Print(Prompt.EngageTest);
+            Output.Print(Prompt.Exit);
 
-            userInput = Console.ReadLine().ToLower();
+            var userInput = Console.ReadLine().ToLower();
 
             switch (userInput)
             {
                 case "exit":
                     {
+                        Console.Clear();
                         return;
                     }
                 case "":
                     {
-                        Console.Write(noInputPromptMessage + exitPromptMessage);
-                        continue;
+                        Output.Print(Message.NoInput);
+                        PressAndClear();
+                        break;
                     }
                 default:
                     {
@@ -43,26 +37,34 @@ public class Program
                         {
                             if (!char.IsLetter(userInput[i]))
                             {
-                                userInput = userInput.Remove(i,1);
+                                userInput = userInput.Remove(i--, 1);
                             }
                         }
 
-                        Console.Write(userInput.Equals(userInput.Reverse()) ? isPalindromeMessage
-                                                                            : isNotPalindromeMessage);
-                        continue;
+                        var isPalindrome = true;
+                        for (int i = 0; i < userInput.Length / 2; i++)
+                        {
+                            if (userInput[i] != userInput[^(i + 1)])
+                            {
+                                isPalindrome = false;
+                                break;
+                            }
+                        }
+
+                        Output.Print(isPalindrome ? Message.IsPalindrome : 
+                                                    Message.IsNotPalindrome);
+                        PressAndClear();
+                        
+                        break;
                     }
             }
-
-
-
-
         }
-
-
     }
 
-    public static void ShowMessage(string message)
+    public static void PressAndClear()
     {
-        Console.WriteLine($"---=== {message} ===---\n");
+        Output.Print(Prompt.PressKey);
+        Console.ReadKey();
+        Console.Clear();
     }
 }
