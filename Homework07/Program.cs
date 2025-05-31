@@ -21,42 +21,23 @@ public class Program
             switch (userInput)
             {
                 case "exit":
-                    {
-                        Console.Clear();
-                        return;
-                    }
+                {
+                    Console.Clear();
+                    return;
+                }
                 case "":
-                    {
-                        Output.Print(Message.NoInput);
-                        PressAndClear();
-                        break;
-                    }
+                {
+                    Output.Print(Message.NoInput);
+                    PressAndClear();
+                    break;
+                }
                 default:
-                    {
-                        for (int i = 0; i < userInput.Length; i++)
-                        {
-                            if (!char.IsLetter(userInput[i]))
-                            {
-                                userInput = userInput.Remove(i--, 1);
-                            }
-                        }
-
-                        var isPalindrome = true;
-                        for (int i = 0; i < userInput.Length / 2; i++)
-                        {
-                            if (userInput[i] != userInput[^(i + 1)])
-                            {
-                                isPalindrome = false;
-                                break;
-                            }
-                        }
-
-                        Output.Print(isPalindrome ? Message.IsPalindrome : 
-                                                    Message.IsNotPalindrome);
-                        PressAndClear();
-                        
-                        break;
-                    }
+                {
+                    Output.Print(IsPalindrome(userInput) ? Message.IsPalindrome :
+                                                            Message.IsNotPalindrome);
+                    PressAndClear();
+                    break;
+                }
             }
         }
     }
@@ -66,5 +47,24 @@ public class Program
         Output.Print(Prompt.PressKey);
         Console.ReadKey();
         Console.Clear();
+    }
+
+    public static bool IsPalindrome(string input)
+    {
+        var reversed = string.Empty;
+
+        for (int k = input.Length - 1; k >= 0; k--)
+        {
+            if (char.IsLetter(input[k]))
+            {
+                reversed += input[k]; 
+            }
+            else
+            {
+                input = input.Remove(k, 1); 
+            }
+        }
+
+       return input == reversed;
     }
 }
