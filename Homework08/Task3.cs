@@ -13,10 +13,6 @@ public class Task3
 
             var userInput = Console.ReadLine();
 
-            var lowerCase = userInput.ToLower();
-            var upperCase = userInput.ToUpper();
-            var upperFirstChars = ToUpperFirstChars(userInput);
-
             switch (userInput)
             {
                 case "exit":
