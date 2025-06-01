@@ -46,9 +46,12 @@ public class Task3
         }
     }
 
-    static string ToUpperFirstChars(string str)
+    static string ToUpperFirstChars(string input)
     {
-        char[] result = str.ToLower().ToCharArray();
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        char[] result = input.ToCharArray();
         var newWordFlag = true;
 
         for (var i = 0; i < result.Length; i++)
@@ -94,7 +97,7 @@ public class Task3
     public static void ShowResult(string input)
     {
         Output.Print(Message.ResultPromise);
-        Output.Print($"Все строчные: {input.ToLower()}\nВсе заглавные: {input.ToUpper()}" +
-                     $"\nПервая буква каждого слова c заглавной: {ToUpperFirstChars(input)}\n");
+        Output.Print($"All lowercase: {input.ToLower()}\nAll caps: {input.ToUpper()}" +
+                     $"\nThe first letter of each word is capitalized: {ToUpperFirstChars(input)}\n");
     }
 }
