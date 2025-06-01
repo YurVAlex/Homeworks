@@ -70,7 +70,7 @@
 
             foreach (var item in TestCases.Palindromes)
             {
-                Output.Print(Message.itemPromise);
+                Output.Print(Message.ItemPromise);
                 Console.WriteLine(item);
 
                 if (string.IsNullOrEmpty(item))

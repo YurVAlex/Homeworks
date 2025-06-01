@@ -2,6 +2,7 @@
 
 public enum Header
 {
+    VariousCasesTask,
     PalindromeTask,
     CombineTask,
     TestCase,
@@ -10,13 +11,12 @@ public enum Header
 public enum Message
 {
     NoInput,
-    NoLetter,
     IsPalindrome,
     IsNotPalindrome,
     ErrorOutput,
     PalinromeWiki,
-    itemPromise,
-    Promise,
+    ItemPromise,
+    ResultPromise,
 }
 
 public enum Prompt

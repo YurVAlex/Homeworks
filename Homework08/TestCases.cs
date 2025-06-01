@@ -19,7 +19,7 @@ public class TestCases
         "bad",
         "start",
         "@#$%^&&*",
-        "Barabas badass on Barbados",
+        "Barabas badass by Barbados",
         null
     };
 
@@ -27,13 +27,21 @@ public class TestCases
     {
         "Friend in need is a friend indeed",
         "1232^ 655Ъ dfM@ -65++ :~} ",
-        "  Test like a test  ",
+        "Test like a test    ",
         "Quasi-diagonal",
         "Hello World!",
         "",
-        "\t\nSome text", 
-        "\n\nText for test",
+        "Some text for test\t with tab",
+        "Some text for test\nwith new line",
         null 
     };
 
+    public static List<string> VariousCases { get; } = new()
+    {
+         "hello world", "HELLO WORLD", "Hello World", "tEsT cAse",
+         "  spaced   words  ", "  SPACED   WORDS  ", "  Spaced-Words  ",
+         "привет ^&*", "ПРИВЕТ 007", "Привет - Мир", "Привет ~Мир", "",
+         "\tпривет мир", "\n ПРИВЕТ МИР", "\t\nпривет мир", "\n7Привет ?Мир",
+         null
+    };
 }

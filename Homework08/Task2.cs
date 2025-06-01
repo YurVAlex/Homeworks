@@ -35,8 +35,8 @@ public class Task2
                     }
                 default:
                     {
-                        Output.Print(Message.Promise);
-                        Console.WriteLine(RemoveSpaces(userInput));
+                        Output.Print(Message.ResultPromise);
+                        Output.Print(RemoveSpaces(userInput) + "\n");
 
                         Output.PressAndClear();
                         break;
@@ -68,8 +68,8 @@ public class Task2
 
         foreach (var item in TestCases.Combine)
         {
-            Output.Print(Message.itemPromise);
-            Console.WriteLine(item);
+            Output.Print(Message.ItemPromise);
+            Output.Print(item + "\n");
 
             if (string.IsNullOrEmpty(item))
             {
@@ -77,12 +77,8 @@ public class Task2
                 continue;
             }
 
-            Output.Print(Message.Promise);
-            Console.WriteLine(RemoveSpaces(item));
-
-            Output.PressAndClear();
-            break;
-
+            Output.Print(Message.ResultPromise);
+            Output.Print(RemoveSpaces(item) + "\n");
         }
         Output.PressAndClear();
     }
