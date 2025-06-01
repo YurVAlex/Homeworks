@@ -18,29 +18,29 @@ public class Task2
             switch (userInput)
             {
                 case "exit":
-                    {
-                        Console.Clear();
-                        return;
-                    }
+                {
+                    Console.Clear();
+                    return;
+                }
                 case "":
-                    {
-                        Output.Print(Message.NoInput);
-                        Output.PressAndClear();
-                        break;
-                    }
+                {
+                    Output.Print(Message.NoInput);
+                    Output.PressAndClear();
+                    break;
+                }
                 case "run":
-                    {
-                        EngageTest();
-                        break;
-                    }
+                {
+                    EngageTest();
+                    break;
+                }
                 default:
-                    {
-                        Output.Print(Message.ResultPromise);
-                        Output.Print(RemoveSpaces(userInput) + "\n");
+                {
+                    Output.Print(Message.ResultPromise);
+                    Output.Print(RemoveSpaces(userInput) + "\n");
 
-                        Output.PressAndClear();
-                        break;
-                    }
+                    Output.PressAndClear();
+                    break;
+                }
             }
         }
     }
@@ -51,7 +51,7 @@ public class Task2
 
         var combine = new StringBuilder();
 
-        foreach (char sumbol in input)
+        foreach (var sumbol in input)
         {
             if (!char.IsWhiteSpace(sumbol))
             {

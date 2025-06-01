@@ -20,30 +20,28 @@ public class Task3
             switch (userInput)
             {
                 case "exit":
-                    {
-                        Console.Clear();
-                        return;
-                    }
+                {
+                    Console.Clear();
+                    return;
+                }
                 case "":
-                    {
-                        Output.Print(Message.NoInput);
-                        Output.PressAndClear();
-                        break;
-                    }
+                {
+                    Output.Print(Message.NoInput);
+                    Output.PressAndClear();
+                    break;
+                }
                 case "run":
-                    {
-                        EngageTest();
-                        break;
-                    }
+                {
+                    EngageTest();
+                    break;
+                }
                 default:
-                    {
-                        Output.Print(Message.ResultPromise);
-                        Output.Print($"All lowercase: {lowerCase}\nAll caps: {upperCase}" +
-                            $"\nThe first letter of each word is capitalized: {upperFirstChars}\n");
+                {
+                    ShowResult(userInput);
 
-                        Output.PressAndClear();
-                        break;
-                    }
+                    Output.PressAndClear();
+                    break;
+                }
             }
         }
     }
@@ -51,9 +49,9 @@ public class Task3
     static string ToUpperFirstChars(string str)
     {
         char[] result = str.ToLower().ToCharArray();
-        bool newWordFlag = true;
+        var newWordFlag = true;
 
-        for (int i = 0; i < result.Length; i++)
+        for (var i = 0; i < result.Length; i++)
         {
             if (char.IsWhiteSpace(result[i]) || result[i] == '\t' || result[i] == '\n')
             {
@@ -88,10 +86,15 @@ public class Task3
                 continue;
             }
 
-            Output.Print(Message.ResultPromise);
-            Output.Print($"Все строчные: {item.ToLower()}\nВсе заглавные: {item.ToUpper()}" +
-                         $"\nПервая буква каждого слова c заглавной: {ToUpperFirstChars(item)}\n");
+            ShowResult(item);
         }
         Output.PressAndClear();
+    }
+
+    public static void ShowResult(string input)
+    {
+        Output.Print(Message.ResultPromise);
+        Output.Print($"Все строчные: {input.ToLower()}\nВсе заглавные: {input.ToUpper()}" +
+                     $"\nПервая буква каждого слова c заглавной: {ToUpperFirstChars(input)}\n");
     }
 }
