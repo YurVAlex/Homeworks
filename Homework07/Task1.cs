@@ -20,12 +20,12 @@ public class Task1
             else
             {
                 Console.WriteLine("\nIncorrect input. Please enter an integer.\n");
-                i--; 
+                i--;
             }
         }
 
-        Console.WriteLine("\nArray elements entered:");
-        foreach (int number in numbers)
+        Console.WriteLine("\nArray elements entered:\n");
+        foreach (var number in numbers)
         {
             Console.Write($"{number} ");
         }

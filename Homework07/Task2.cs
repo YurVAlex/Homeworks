@@ -4,37 +4,38 @@ public class Task2
 {
     public static void Run()
     {
-        int[,] matrix = {
-            { 555, 34, -77 },  
-            { 23, 777, -15 },  
-            { -67, 55, 999 }   
-        };
+        int[,] array = new int[3, 3];
+        int[] rowMaximums = new int[array.GetLength(0)];
 
-        Console.WriteLine("Two-dimensional array:");
+        var rnd = new Random();
 
-        for (var i = 0; i < matrix.GetLength(0); i++) 
+        Console.WriteLine("Two-dimensional array with randomly generated values:\n");
+
+        for (var i = 0; i < array.GetLength(0); i++) 
         {
-            for (var j = 0; j < matrix.GetLength(1); j++) 
+            var maxInRow = int.MinValue; 
+
+            for (var j = 0; j < array.GetLength(1); j++) 
             {
-                Console.Write($"{matrix[i, j]}\t"); 
-            }
-            Console.WriteLine();
-        }
+                array[i, j] = rnd.Next(1, 101);
 
-        Console.WriteLine("\nMaximum elements of each row:");
+                Console.Write($"{array[i, j]}\t"); 
 
-        for (var i = 0; i < matrix.GetLength(0); i++) 
-        {
-            var maxInRow = matrix[i, 0]; 
-
-            for (var j = 1; j < matrix.GetLength(1); j++) 
-            {
-                if (matrix[i, j] > maxInRow)
+                if (array[i, j] > maxInRow)
                 {
-                    maxInRow = matrix[i, j]; 
+                    maxInRow = array[i, j]; 
                 }
             }
-            Console.WriteLine($"Line {i}: {maxInRow}");
+            Console.WriteLine();
+
+            rowMaximums[i] = maxInRow;
+        }
+
+        Console.WriteLine("\nRow maximums:\n");
+
+        for (int i = 0; i < rowMaximums.Length; i++)
+        {
+            Console.WriteLine($"Row {i}: {rowMaximums[i]}");
         }
 
         Console.WriteLine("\nPress any key to finish this task...");
