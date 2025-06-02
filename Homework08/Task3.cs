@@ -13,7 +13,7 @@ public class Task3
 
             var userInput = Console.ReadLine();
 
-            switch (userInput)
+            switch (userInput.ToLower())
             {
                 case "exit":
                 {
@@ -77,7 +77,7 @@ public class Task3
         foreach (var item in TestCases.VariousCases)
         {
             Output.Print(Message.ItemPromise);
-            Output.Print(item + "\n");
+            Output.Print(item);
 
             if (string.IsNullOrEmpty(item))
             {

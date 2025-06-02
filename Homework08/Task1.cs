@@ -12,9 +12,9 @@ public class Task1
             Output.Print(Prompt.EngageTest);
             Output.Print(Prompt.Exit);
 
-            var userInput = Console.ReadLine().ToLower();
+            var userInput = Console.ReadLine();
 
-            switch (userInput)
+            switch (userInput.ToLower())
             {
                 case "exit":
                 {
@@ -45,6 +45,7 @@ public class Task1
 
     public static bool IsPalindrome(string input)
     {
+        input = input.ToLower();
         var reversed = string.Empty;
 
         for (int k = input.Length - 1; k >= 0; k--)
@@ -84,7 +85,7 @@ public class Task1
 
     public static void ShowResult(string input)
     {
-        Output.Print(IsPalindrome(input.ToLower()) ? Message.IsPalindrome :
-                                                     Message.IsNotPalindrome);
+        Output.Print(IsPalindrome(input) ? Message.IsPalindrome :
+                                           Message.IsNotPalindrome);
     }
 }

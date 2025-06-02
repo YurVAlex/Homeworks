@@ -41,7 +41,7 @@ public class TestCases
          "hello world", "HELLO WORLD", "Hello World", "tEsT cAse",
          "  spaced   words  ", "  SPACED   WORDS  ", "  Spaced-Words  ",
          "привет ^&*", "ПРИВЕТ 007", "Привет - Мир", "Привет ~Мир", "",
-         "\tпривет мир", "\n ПРИВЕТ МИР", "\t\nпривет мир", "\n7Привет ?Мир",
+         "\tпривет мир", "\n ПРИВЕТ МИР", "\t\nпривет мир", "\n7Привет ?мир",
          null
     ];
 }
