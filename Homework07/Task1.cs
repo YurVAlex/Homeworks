@@ -7,7 +7,6 @@ public class Task1
         int[] numbers = new int[6];
 
         Console.WriteLine("Enter 6 integers for the array elements:\n");
-
         for (var i = 0; i < numbers.Length; i++)
         {
             Console.Write($"Enter element {i + 1}: ");
@@ -23,24 +22,14 @@ public class Task1
                 i--;
             }
         }
-
         Console.WriteLine("\nArray elements entered:\n");
-        foreach (var number in numbers)
-        {
-            Console.Write($"{number} ");
-        }
-        Console.WriteLine();
+        Console.WriteLine(string.Join(" ", numbers));
 
         Array.Sort(numbers);
-
         Array.Reverse(numbers);
 
         Console.WriteLine("\nArray elements sorted in descending order:\n");
-        foreach (var number in numbers)
-        {
-            Console.Write($"{number} ");
-        }
-        Console.WriteLine();
+        Console.WriteLine(string.Join(" ", numbers));
 
         Console.WriteLine("\nPress any key to finish this task...\n");
         Console.ReadKey();
