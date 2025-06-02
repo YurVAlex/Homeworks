@@ -22,9 +22,6 @@ public class Task1
                 i--;
             }
         }
-        Console.WriteLine("\nArray elements entered:\n");
-        Console.WriteLine(string.Join(" ", numbers));
-
         Array.Sort(numbers);
         Array.Reverse(numbers);
 
