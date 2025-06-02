@@ -51,11 +51,11 @@ public class Task2
 
         var combine = new StringBuilder();
 
-        foreach (var sumbol in input)
+        foreach (var symbol in input)
         {
-            if (!char.IsWhiteSpace(sumbol))
+            if (!char.IsWhiteSpace(symbol))
             {
-                combine.Append(sumbol);
+                combine.Append(symbol);
             }
         }
         return combine.ToString();
