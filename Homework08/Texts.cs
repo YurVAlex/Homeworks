@@ -14,7 +14,7 @@ public static class Texts
     {
         { Message.NoInput, "\nNo input provided!" },
         { Message.PalinromeWiki, "A palindrome is a number, letter combination," +
-            "\nword or text that reads the same in both directions." },
+                                 "\nword or text that reads the same in both directions." },
         { Message.IsPalindrome, "\nYES, the entered string is a palindrome!" },
         { Message.IsNotPalindrome, "\nProvided input is NOT a palindrome!" },
         { Message.ErrorOutput, "\nError output request." },

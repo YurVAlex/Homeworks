@@ -27,7 +27,7 @@ public class Task1
 
         for (int k = input.Length - 1; k >= 0; k--)
         {
-            if (char.IsLetterOrDigit(input[k]))
+            if (char.IsLetterOrDigit(input[k])) // (IsLetter) if if we don't take numbers into account 
             {
                 reversed += input[k];
             }
