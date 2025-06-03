@@ -32,7 +32,7 @@ public class Task3
                                "\nUnique words and their frequencies:");
             foreach (var item in wordCounts)
             {
-                Console.WriteLine($"{item.Key}: {item.Value}");
+                Console.WriteLine("{0,-15} {1,5}", $"{item.Key}:", $"{item.Value}");
             }
         }
         else
