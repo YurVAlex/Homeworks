@@ -70,6 +70,6 @@ public class Student
 
     public override string ToString()
     {
-        return $"Name: {_name}, Age: {_age}, Average Mark: {_averageMark:F2}";
+        return $"Name: {_name}.\t Age: {_age}, Average Mark: {_averageMark:F2}";
     }
 }

@@ -13,11 +13,7 @@ public class Task2
         products["Apple Watch"] = 457.85;
         products["Apple Pencil Pro"] = 99.99;
 
-        Console.WriteLine("Product list:\n");
-        foreach (var product in products)
-        {
-            Console.WriteLine($"{product.Key}:\t\t ${product.Value:F2}");
-        }
+        ProductsListPrinter.Print(products);
 
         Console.Write("\nEnter product name to search:\n");
         if (products.TryGetValue(Console.ReadLine().Trim(), out double price))
@@ -33,7 +29,7 @@ public class Task2
         foreach (var key in products.Keys)
         {
             products[key] *= 1.10;
-            Console.WriteLine($"{key}: ${products[key]:F2}");
         }
+        ProductsListPrinter.Print(products);
     }
 }
