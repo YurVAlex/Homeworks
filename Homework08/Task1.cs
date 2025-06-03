@@ -4,7 +4,7 @@ public class Task1
 {
     public static void Run()
     {
-        while (true)
+        do
         {
             Output.Print(Header.PalindromeTask);
             Output.Print(Message.PalinromeWiki);
@@ -12,29 +12,7 @@ public class Task1
             Output.Print(Prompt.EngageTest);
             Output.Print(Prompt.Exit);
 
-            var userInput = Console.ReadLine();
-
-            switch (userInput.ToLower())
-            {
-                case "exit":
-                {
-                    Console.Clear();
-                    return;
-                }
-                case "run":
-                {
-                    Test.Run(TestCases.Palindromes, PalindromeCheck);
-                    break;
-                }
-                default:
-                {
-                    PalindromeCheck(userInput);
-
-                    Output.PressAndClear();
-                    break;
-                }
-            }
-        }
+        } while (InputProcessor.IsActive(Console.ReadLine(), TestCases.Palindromes, PalindromeCheck));
     }
 
     public static void PalindromeCheck(string input)

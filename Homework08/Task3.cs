@@ -4,36 +4,14 @@ public class Task3
 {
     public static void Run()
     {
-        while (true)
+        do
         {
             Output.Print(Header.VariousCasesTask);
             Output.Print(Prompt.UserInput);
             Output.Print(Prompt.EngageTest);
             Output.Print(Prompt.Exit);
 
-            var userInput = Console.ReadLine();
-
-            switch (userInput.ToLower())
-            {
-                case "exit":
-                {
-                    Console.Clear();
-                    return;
-                }
-                case "run":
-                {
-                    Test.Run(TestCases.VariousCases, ShowResult);
-                    break;
-                }
-                default:
-                {
-                    ShowResult(userInput);
-
-                    Output.PressAndClear();
-                    break;
-                }
-            }
-        }
+        } while (InputProcessor.IsActive(Console.ReadLine(), TestCases.VariousCases, ChangeСase));
     }
 
     static string ToUpperFirstChars(string input)
@@ -60,7 +38,7 @@ public class Task3
         return new string(result);
     }
 
-    public static void ShowResult(string input)
+    public static void ChangeСase(string input)
     {
         if (string.IsNullOrEmpty(input))
         {

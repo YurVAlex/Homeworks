@@ -6,36 +6,14 @@ public class Task2
 {
     public static void Run()
     {
-        while (true)
+        do
         {
             Output.Print(Header.CombineTask);
             Output.Print(Prompt.UserInput);
             Output.Print(Prompt.EngageTest);
             Output.Print(Prompt.Exit);
 
-            var userInput = Console.ReadLine();
-
-            switch (userInput.ToLower())
-            {
-                case "exit":
-                {
-                    Console.Clear();
-                    return;
-                }
-                case "run":
-                {
-                    Test.Run(TestCases.Combine, RemoveSpaces);
-                    break;
-                }
-                default:
-                {
-                    RemoveSpaces(userInput);
-
-                    Output.PressAndClear();
-                    break;
-                }
-            }
-        }
+        } while (InputProcessor.IsActive(Console.ReadLine(), TestCases.Combine, RemoveSpaces));
     }
 
     public static void RemoveSpaces(string input)
