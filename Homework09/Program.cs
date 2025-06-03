@@ -16,7 +16,7 @@ public class Program
     public static void GoToNext()
     {
         Console.WriteLine("\nTo move to the next task, press any key...");
-        Console.ReadLine();
+        Console.ReadKey();
         Console.Clear();
     }
 }
