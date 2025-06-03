@@ -21,20 +21,14 @@ public class Task1
                     Console.Clear();
                     return;
                 }
-                case "":
-                {
-                    Output.Print(Message.NoInput);
-                    Output.PressAndClear();
-                    break;
-                }
                 case "run":
                 {
-                    EngageTest();
+                    Test.Run(TestCases.Palindromes, PalindromeCheck);
                     break;
                 }
                 default:
                 {
-                    ShowResult(userInput);
+                    PalindromeCheck(userInput);
 
                     Output.PressAndClear();
                     break;
@@ -43,8 +37,13 @@ public class Task1
         }
     }
 
-    public static bool IsPalindrome(string input)
+    public static void PalindromeCheck(string input)
     {
+        if (string.IsNullOrEmpty(input))
+        {
+            Output.Print(Message.NoInput);
+            return;
+        }
         input = input.ToLower();
         var reversed = string.Empty;
 
@@ -59,33 +58,7 @@ public class Task1
                 input = input.Remove(k, 1);
             }
         }
-        return (input.Length > 0) && (input == reversed);
-    }
-
-    public static void EngageTest()
-    {
-        Console.Clear();
-        Output.Print(Header.TestCase);
-
-        foreach (var item in TestCases.Palindromes)
-        {
-            Output.Print(Message.ItemPromise);
-            Console.WriteLine(item);
-
-            if (string.IsNullOrEmpty(item))
-            {
-                Output.Print(Message.NoInput);
-                continue;
-            }
-
-            ShowResult(item);
-        }
-        Output.PressAndClear();
-    }
-
-    public static void ShowResult(string input)
-    {
-        Output.Print(IsPalindrome(input) ? Message.IsPalindrome :
-                                           Message.IsNotPalindrome);
+        Output.Print((input.Length > 0) && (input == reversed) ? Message.IsPalindrome :
+                                                                 Message.IsNotPalindrome);
     }
 }

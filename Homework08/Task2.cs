@@ -22,21 +22,14 @@ public class Task2
                     Console.Clear();
                     return;
                 }
-                case "":
-                {
-                    Output.Print(Message.NoInput);
-                    Output.PressAndClear();
-                    break;
-                }
                 case "run":
                 {
-                    EngageTest();
+                    Test.Run(TestCases.Combine, RemoveSpaces);
                     break;
                 }
                 default:
                 {
-                    Output.Print(Message.ResultPromise);
-                    Output.Print(RemoveSpaces(userInput) + "\n");
+                    RemoveSpaces(userInput);
 
                     Output.PressAndClear();
                     break;
@@ -45,10 +38,13 @@ public class Task2
         }
     }
 
-    public static string RemoveSpaces(string input)
+    public static void RemoveSpaces(string input)
     {
-        if (string.IsNullOrEmpty(input)) return input;
-
+        if (string.IsNullOrEmpty(input))
+        {
+            Output.Print(Message.NoInput);
+            return;
+        }
         var combine = new StringBuilder();
 
         foreach (var symbol in input)
@@ -58,28 +54,7 @@ public class Task2
                 combine.Append(symbol);
             }
         }
-        return combine.ToString();
-    }
-
-    public static void EngageTest()
-    {
-        Console.Clear();
-        Output.Print(Header.TestCase);
-
-        foreach (var item in TestCases.Combine)
-        {
-            Output.Print(Message.ItemPromise);
-            Output.Print(item);
-
-            if (string.IsNullOrEmpty(item))
-            {
-                Output.Print(Message.NoInput);
-                continue;
-            }
-
-            Output.Print(Message.ResultPromise);
-            Output.Print(RemoveSpaces(item) + "\n");
-        }
-        Output.PressAndClear();
+        Output.Print(Message.ResultPromise);
+        Output.Print(combine.ToString() + "\n");
     }
 }
