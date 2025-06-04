@@ -1,38 +1,52 @@
-﻿namespace Homework09;
+﻿using System.Text;
 
+namespace Homework09;
+
+// This program allows to count the number of unique words in several paragraphs of text
 public class Task3
 {
     public static void Run()
     {
-        Dictionary<string, int> wordCounts = [];
+        var wordCounts = new Dictionary<string, int>();
+        var toTrim = "!@#$%^&*()_+-=[]{}|;':\",./<>?`~1234567890 \t\n\r".ToCharArray();
+        var separators = " \t\r\n".ToCharArray();
+        var input = new StringBuilder();
 
-        Console.WriteLine("Please, enter some text to count unique words:");
-        var input = Console.ReadLine();
+        Console.WriteLine("Enter (or paste) text to count unique words:");
+        do
+        {
+            input.AppendLine(Console.ReadLine());
 
-        char[] toTrim = "!@#$%^&*()_+-=[]{}|;':\",./<>?`~1234567890 \t\n\r".ToCharArray();
+        } while (Console.KeyAvailable);
 
-        var words = input.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var words = input.ToString()
+                         .ToLower()
+                         .Split(separators, StringSplitOptions.RemoveEmptyEntries)
+                         .Select(word => word.Trim(toTrim))
+                         .Where(word => !string.IsNullOrEmpty(word))
+                         .ToArray();
 
         for (var i = 0; i < words.Length; i++)
         {
-            words[i] = words[i].Trim(toTrim);
+            var currentWord = words[i];
 
-            if (wordCounts.ContainsKey(words[i]))
+            if (wordCounts.ContainsKey(currentWord))
             {
-                wordCounts[words[i]]++;
+                wordCounts[currentWord]++;
             }
             else
             {
-                wordCounts[words[i]] = 1;
+                wordCounts[currentWord] = 1;
             }
         }
+
         if (wordCounts.Count > 0)
         {
             Console.WriteLine($"\nNumber of unique words: {wordCounts.Count}" +
                                "\nUnique words and their frequencies:");
             foreach (var item in wordCounts)
             {
-                Console.WriteLine("{0,-15} {1,5}", $"{item.Key}:", $"{item.Value}");
+                Console.WriteLine("{0,-25} {1,9}", $"{item.Key}:", $"{item.Value}");
             }
         }
         else
