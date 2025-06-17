@@ -10,8 +10,12 @@ public class Factorial
         }
         else if (n < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(n), 
-                "Factorial is not defined for negative numbers.");
+            throw new ArgumentOutOfRangeException(
+                "Factorial is not defined for negative numbers.", null);
+        }
+        else if (n > 170)
+        {
+            throw new FactorialTooBigArgumentException();
         }
         else
         {
