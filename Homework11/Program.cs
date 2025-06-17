@@ -4,9 +4,9 @@ public class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- Factorial Calculator Test ---\n");
+        Console.WriteLine("--- FACTORIAL CALCULATOR TEST ---");
 
-        var cases = new[] { 4, 0, -5, 12, 16, 20, 35, 55, 170, 250 };
+        var cases = new[] { -1, 0, 1, 5, 12, 25, 55, 100, 170, 250 };
 
         foreach (var item in cases)
         {
@@ -15,13 +15,7 @@ public class Program
                 var currentResult = Factorial.Calculate(item);
                 Console.WriteLine($"The factorial of {item} is: {currentResult}");
             }
-            catch (FactorialTooBigArgumentException ex)
-            {
-                Output.Error($"Error calculating factorial for {item}:" +
-                             $"\n{ex.Message}" +
-                             $"\nRange of numbers for calculation: 0 - {ex.MaxArgument}");
-            }
-            catch (ArgumentOutOfRangeException ex)
+            catch (FactorialArgumentException ex)
             {
                 Output.Error($"Error calculating factorial for {item}:\n{ex.Message}");
             }
@@ -30,5 +24,6 @@ public class Program
                 Output.Error($"An unexpected error occurred: {ex.Message}");
             }
         }
+        Output.Finish();
     }
 }

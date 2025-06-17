@@ -2,24 +2,15 @@
 
 public class Factorial
 {
-    public static double Calculate(int n)
+    private const int _maxArgument = 170; // Calculation for 171 returns "?" for double
+                                          // Calculation for 21 will overflow long
+    public static double Calculate(int n) // Stack overflow occurs after ~16K repeatings
     {
-        if (n == 0)
+        return n switch
         {
-            return 1;
-        }
-        else if (n < 0)
-        {
-            throw new ArgumentOutOfRangeException(
-                "Factorial is not defined for negative numbers.", null);
-        }
-        else if (n > 170)
-        {
-            throw new FactorialTooBigArgumentException();
-        }
-        else
-        {
-                return n * Calculate(n - 1);
-        }
+            < 0 or > _maxArgument => throw new FactorialArgumentException(n, _maxArgument),
+            < 2 => 1,
+            _ => n * Calculate(n - 1)
+        };
     }
 }
