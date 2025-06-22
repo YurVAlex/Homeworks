@@ -1,6 +1,6 @@
 ﻿namespace Homework12;
 
-public class UsersDataManager
+public class DataManager
 {
     public static void Run()
     {

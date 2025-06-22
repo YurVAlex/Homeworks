@@ -2,28 +2,21 @@ namespace Homework12;
 
 public class Output
 {
-    public static void Finish()
-    {
-        Console.WriteLine("To finish this task, press any key...");
-        Console.ReadKey();
-        Console.Clear();
-    }
-
     public static void PressAndClear()
     {
-        Console.WriteLine("To continue, press any key...");
+        Console.WriteLine("\nTo continue, press any key...");
         Console.ReadKey();
         Console.Clear();
     }
 
     public static void Header(string message)
     {
-        Console.Write($"---=== {message.ToUpper()} ===---\n\n");
+        Console.Write($"\n---=== {message.ToUpper()} ===---\n");
     }
 
     public static void Prompt(string message)
     {
-        Console.Write($"==> {message}\n");
+        Console.Write($"\n==> {message}\n");
     }
 
     public static void Warning(string message)
@@ -44,8 +37,4 @@ public class Output
     {
         Console.Write($"\n{message}\n\n");
     }
-
-    
-
-    
 }

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Homework12;
+﻿namespace Homework12;
 
 public class Menu
 {
-    public static bool IsActive { get; set; }
+    public static bool IsActive { get; set; } = true;
 
     public static void Show()
     {
@@ -31,18 +24,21 @@ public class Menu
                 }
             case "show":
                 {
-                    
+                    Console.Clear();
+                    Storage.ShowAllUsers();
+                    Output.PressAndClear();
                     break;
                 }
             case "add":
                 {
-                    DataProcessor.AddNewUserData();
+                    Input.AddNewUserData();
                     Output.PressAndClear();
                     break;
                 }
             default:
                 {
-                    Output.Warning("Invalid input. Try again:");
+                    Output.Warning("Invalid input. Try again.");
+                    Output.PressAndClear();
                     break;
                 }
         }
