@@ -1,17 +1,10 @@
-﻿using System.Xml.Linq;
+﻿namespace Homework13;
 
-namespace Homework13;
-
-public class NewsProvider
+public class NewsProvider(string name)
 {
-    public string Name { get; set; } 
-
     private Dictionary<Category, List<Action<string>>> _dealCatalog = [];
 
-    public NewsProvider (string name)
-    {
-        Name = (!string.IsNullOrEmpty(name)) ? name : "Unknown";
-    }
+    public string Name { get; set; } = (!string.IsNullOrEmpty(name)) ? name : "Unknown";
 
     public void Subscribe(Category category, Action<string> dispatch)
     {
