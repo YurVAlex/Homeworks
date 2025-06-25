@@ -4,20 +4,32 @@ namespace Homework12;
 
 public class Storage
 {
-    private static string _storage = "Users.json";
+    private static string _storagePath = "users.json";
 
-    public static void AddUser(User user)
+    public static void Save(User user)
+    {
+        if (user.IsValid())
+        {
+            DirectSave(user);
+        }
+        else
+        {
+            Output.Error($"User ({user}) - have an invalid data format. Saving was interrupted.");
+        }
+    }
+
+    public static void DirectSave(User user)
     {
         var json = JsonSerializer.Serialize(user) + "\n";
 
-        File.AppendAllText(_storage, json);
+        File.AppendAllText(_storagePath, json);
 
         Output.Message($"User ({user}) - added to storage.");
     }
 
     public static void ShowAllUsers()
     {
-        if (!File.Exists(_storage) || new FileInfo(_storage).Length == 0)
+        if (!File.Exists(_storagePath) || new FileInfo(_storagePath).Length == 0)
         {
             Output.Message("No users found in storage.");
             return;
@@ -27,7 +39,7 @@ public class Storage
 
         try
         {
-            foreach (var line in File.ReadAllLines(_storage))
+            foreach (var line in File.ReadAllLines(_storagePath))
             {
                 if (!string.IsNullOrWhiteSpace(line))
                 {
@@ -39,7 +51,7 @@ public class Storage
                             Console.WriteLine($"{user}");
                         }
                     }
-                    catch { }
+                    catch { } // to skip non-serializable (damaged) lines
                 }
             }
         }

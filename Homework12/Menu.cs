@@ -18,29 +18,29 @@ public class Menu
         switch (Console.ReadLine().ToLower())
         {
             case "exit":
-                {
-                    IsActive = false;
-                    break;
-                }
+            {
+                IsActive = false;
+                break;
+            }
             case "show":
-                {
-                    Console.Clear();
-                    Storage.ShowAllUsers();
-                    Output.PressAndClear();
-                    break;
-                }
+            {
+                Console.Clear();
+                Storage.ShowAllUsers();
+                Output.PressAndClear();
+                break;
+            }
             case "add":
-                {
-                    Input.AddNewUserData();
-                    Output.PressAndClear();
-                    break;
-                }
+            {
+                Input.SaveNewValidUserData();
+                Output.PressAndClear();
+                break;
+            }
             default:
-                {
-                    Output.Warning("Invalid input. Try again.");
-                    Output.PressAndClear();
-                    break;
-                }
+            {
+                Output.Warning("Invalid input. Try again.");
+                Output.PressAndClear();
+                break;
+            }
         }
     }
 }

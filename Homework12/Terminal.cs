@@ -1,6 +1,6 @@
 ﻿namespace Homework12;
 
-public class DataManager
+public class Terminal
 {
     public static void Run()
     {

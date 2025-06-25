@@ -11,7 +11,7 @@ public class Output
 
     public static void Header(string message)
     {
-        Console.Write($"\n---=== {message.ToUpper()} ===---\n");
+        Console.Write($"---=== {message.ToUpper()} ===---\n");
     }
 
     public static void Prompt(string message)
