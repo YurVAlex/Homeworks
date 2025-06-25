@@ -14,7 +14,7 @@ public class Storage
         }
         else
         {
-            Output.Error($"User ({user}) - have an invalid data format. Saving was interrupted.");
+            Output.Error($"User ({user}) - incorrect data entered. Saving was interrupted.");
         }
     }
 
