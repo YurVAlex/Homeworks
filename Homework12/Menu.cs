@@ -25,13 +25,17 @@ public class Menu
             case "show":
             {
                 Console.Clear();
-                Storage.ShowAllUsers();
+                Output.ShowAllUsersData(Storage.LoadAllUsersData());
                 Output.PressAndClear();
                 break;
             }
             case "add":
             {
-                Input.SaveNewValidUserData();
+                var newUserData = Input.MakeNewValidUser();
+                if (newUserData != null)
+                {
+                    Storage.DirectSave(newUserData);
+                }
                 Output.PressAndClear();
                 break;
             }

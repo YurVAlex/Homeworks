@@ -2,22 +2,28 @@ namespace Homework12;
 
 public class Input
 {
-    private static string _inputName, _inputEmail;
-    private static int _inputAge;
+    private static string _validName, _validEmail;
+    private static int _validAge;
 
-    public static void SaveNewValidUserData()
+    public static User? MakeNewValidUser()
+    {
+        return IsValidUserDataEntered() ? new User(_validName, _validAge, _validEmail) : null;
+    }
+
+    private static bool IsValidUserDataEntered()
     {
         if (TryReadValidName() && TryReadValidAge() && TryReadValidEmail())
         {
-            Storage.DirectSave(new User(_inputName, _inputAge, _inputEmail));
+            return true;
         }
         else
         {
             Output.Warning("Process aborted. New user's data not added.");
+            return false;
         }
     }
 
-    public static bool TryReadValidName()
+    private static bool TryReadValidName()
     {
         while (true)
         {
@@ -25,14 +31,15 @@ public class Input
             Output.Prompt("Enter user's name in specific string format:");
             Output.Prompt("To exit this section - enter \"exit\"\n");
 
-            _inputName = Console.ReadLine();
+            var input = Console.ReadLine();
 
-            if (_inputName.ToLower() == "exit")
+            if (input.ToLower() == "exit")
             {
                 return false;
             }
-            if (User.IsValidName(_inputName))
+            if (User.IsValidName(input))
             {
+                _validName = input;
                 return true;
             }
 
@@ -42,7 +49,7 @@ public class Input
         }
     }
 
-    public static bool TryReadValidAge()
+    private static bool TryReadValidAge()
     {
         while (true)
         {
@@ -56,8 +63,9 @@ public class Input
             {
                 return false;
             }
-            if (int.TryParse(input, out _inputAge) && User.IsValidAge(_inputAge))
+            if (int.TryParse(input, out var number) && User.IsValidAge(number))
             {
+                _validAge = number;
                 return true;
             }
             
@@ -66,7 +74,7 @@ public class Input
         }
     }
 
-    public static bool TryReadValidEmail()
+    private static bool TryReadValidEmail()
     {
         while (true)
         {
@@ -74,14 +82,15 @@ public class Input
             Output.Prompt("Enter user's e-mail:");
             Output.Prompt("To exit this section - enter \"exit\"\n");
 
-            _inputEmail = Console.ReadLine().Trim();
+            var input = Console.ReadLine().Trim();
 
-            if (_inputEmail.ToLower() == "exit")
+            if (input.ToLower() == "exit")
             {
                 return false;
             }
-            if (User.IsValidEmail(_inputEmail))
+            if (User.IsValidEmail(input))
             {
+                _validEmail = input;
                 return true;
             }
 

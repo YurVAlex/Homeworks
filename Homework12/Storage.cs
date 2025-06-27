@@ -27,37 +27,24 @@ public class Storage
         Output.Message($"User ({user}) - added to storage.");
     }
 
-    public static void ShowAllUsers()
+    public static bool Exists()
     {
-        if (!File.Exists(_storagePath) || new FileInfo(_storagePath).Length == 0)
-        {
-            Output.Message("No users found in storage.");
-            return;
-        }
+        return File.Exists(_storagePath);
+    }
 
-        Output.Header("All Users:");
+    public static string[] LoadAllUsersData()
+    {
+        var data = Array.Empty<string>();
 
         try
         {
-            foreach (var line in File.ReadAllLines(_storagePath))
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    try
-                    {
-                        var user = JsonSerializer.Deserialize<User>(line.Trim());
-                        if (user != null)
-                        {
-                            Console.WriteLine($"{user}");
-                        }
-                    }
-                    catch { } // to skip non-serializable (damaged) lines
-                }
-            }
+            data = File.ReadAllLines(_storagePath);
         }
         catch (Exception ex)
         {
             Output.Error("Failed to read users: " + ex.Message);
         }
+
+        return data;
     }
 }

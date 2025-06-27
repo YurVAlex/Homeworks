@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace Homework12;
 
 public class Output
@@ -36,5 +38,38 @@ public class Output
     public static void Message(string message)
     {
         Console.Write($"\n{message}\n\n");
+    }
+
+    public static void ShowAllUsersData(string[] data)
+    {
+        if (!Storage.Exists())
+        {
+            Warning("The storage is missing or has not been initialized yet. Try adding some data first.");
+            return;
+        }
+
+        if (data.Length == 0)
+        {
+            Warning("The storage is empty");
+        }
+        else
+        {
+            Header("All Users:");
+            foreach (var line in data)
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    try
+                    {
+                        var user = JsonSerializer.Deserialize<User>(line.Trim());
+                        if (user != null)
+                        {
+                            Console.WriteLine($"{user}");
+                        }
+                    }
+                    catch { } // to ignore non-serializable (damaged) lines
+                }
+            }
+        }
     }
 }
