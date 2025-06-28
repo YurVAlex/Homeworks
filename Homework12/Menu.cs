@@ -25,7 +25,15 @@ public class Menu
             case "show":
             {
                 Console.Clear();
-                Output.ShowAllUsersData(Storage.LoadAllUsersData());
+                if (Storage.ExistsAndNotEmpty(out var message))
+                {
+                    Output.ShowAllUsersData(Storage.LoadAllUsersData());
+                }
+                else
+                {
+                    Output.ShowError(message);
+                }
+
                 Output.PressAndClear();
                 break;
             }
@@ -36,12 +44,14 @@ public class Menu
                 {
                     Storage.DirectSave(newUserData);
                 }
+
                 Output.PressAndClear();
                 break;
             }
             default:
             {
                 Output.ShowWarning("Invalid input. Try again.");
+
                 Output.PressAndClear();
                 break;
             }

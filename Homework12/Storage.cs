@@ -2,15 +2,30 @@
 
 namespace Homework12;
 
-public class Storage
+public static class Storage
 {
     private static string _storagePath = "users.json";
+
+    static Storage() // To initially create a storage
+    {
+        try
+        {
+            if (!File.Exists(_storagePath))
+            {
+                File.Create(_storagePath).Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            Output.ShowError($"Failed to create {_storagePath}: " + ex.Message);
+        }
+    }
 
     public static bool ExistsAndNotEmpty (out string message)
     {
         if(!File.Exists(_storagePath))
         {
-            message = "The storage is missing or has not been initialized yet. Try adding some data first.";
+            message = "The storage is missing or has not been initialized.";
             return false;
         }
         
@@ -26,7 +41,7 @@ public class Storage
 
     public static void Save(User user)
     {
-        if (user.IsValid())
+        if (Validator.IsValid(user))
         {
             DirectSave(user);
         }

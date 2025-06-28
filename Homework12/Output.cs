@@ -42,29 +42,22 @@ public class Output
 
     public static void ShowAllUsersData(IEnumerable<string> data)
     {
-        if (Storage.ExistsAndNotEmpty(out var message))
-        {
-            ShowHeader("All Users:");
+        ShowHeader("All Users");
 
-            foreach (var line in data)
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    try
-                    {
-                        var user = JsonSerializer.Deserialize<User>(line.Trim());
-                        if (user != null)
-                        {
-                            Console.WriteLine($"{user}");
-                        }
-                    }
-                    catch { } // to ignore non-serializable (damaged) lines
-                }
-            }
-        }
-        else
+        foreach (var line in data)
         {
-            ShowWarning(message);
+            if (!string.IsNullOrWhiteSpace(line))
+            {
+                try
+                {
+                    var user = JsonSerializer.Deserialize<User>(line.Trim());
+                    if (user != null)
+                    {
+                        Console.WriteLine($"{user}");
+                    }
+                }
+                catch { } // to ignore non-serializable (damaged) lines
+            }
         }
     }
 }

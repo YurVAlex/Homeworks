@@ -1,6 +1,6 @@
 namespace Homework12;
 
-public class Input
+public static class Input
 {
     private static string _validName, _validEmail;
     private static int _validAge;
@@ -18,7 +18,7 @@ public class Input
         }
         else
         {
-            Output.ShowWarning("Process aborted. New user's data not added.");
+            Output.ShowWarning("Process aborted. New user's data not added to storage.");
             return false;
         }
     }
@@ -37,14 +37,14 @@ public class Input
             {
                 return false;
             }
-            if (User.IsValidName(input))
+            if (Validator.IsValidName(input))
             {
                 _validName = input;
                 return true;
             }
 
             Output.ShowWarning("Invalid input. Please enter a valid name " +
-                  "(at least 2 letters, only letters, spaces, apostrophes, or hyphens).");
+                "(at least 2 letters, only letters, spaces, apostrophes, or hyphens).");
             Output.PressAndClear(); 
         }
     }
@@ -63,13 +63,14 @@ public class Input
             {
                 return false;
             }
-            if (int.TryParse(input, out var number) && User.IsValidAge(number))
+            if (int.TryParse(input, out var number) && Validator.IsValidAge(number))
             {
                 _validAge = number;
                 return true;
             }
             
-            Output.ShowWarning($"Invalid input. Please enter a valid age (integer between 0 and {User.MaxAge}).");
+            Output.ShowWarning("Invalid input. Please enter a valid age " +
+                $"(integer between 0 and {User.MaxAge}).");
             Output.PressAndClear();
         }
     }
@@ -88,7 +89,7 @@ public class Input
             {
                 return false;
             }
-            if (User.IsValidEmail(input))
+            if (Validator.IsValidEmail(input))
             {
                 _validEmail = input;
                 return true;
