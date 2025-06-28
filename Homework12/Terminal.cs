@@ -7,7 +7,7 @@ public class Terminal
         do
         {
             Menu.Show();
-            Menu.ReadInput();
+            Menu.ReadMenuCommand();
 
         } while (Menu.IsActive);
     }

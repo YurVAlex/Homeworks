@@ -18,7 +18,7 @@ public class Input
         }
         else
         {
-            Output.Warning("Process aborted. New user's data not added.");
+            Output.ShowWarning("Process aborted. New user's data not added.");
             return false;
         }
     }
@@ -28,8 +28,8 @@ public class Input
         while (true)
         {
             Console.Clear();
-            Output.Prompt("Enter user's name in specific string format:");
-            Output.Prompt("To exit this section - enter \"exit\"\n");
+            Output.ShowPrompt("Enter user's name in specific string format:");
+            Output.ShowPrompt("To exit this section - enter \"exit\"\n");
 
             var input = Console.ReadLine();
 
@@ -43,7 +43,7 @@ public class Input
                 return true;
             }
 
-            Output.Warning("Invalid input. Please enter a valid name " +
+            Output.ShowWarning("Invalid input. Please enter a valid name " +
                   "(at least 2 letters, only letters, spaces, apostrophes, or hyphens).");
             Output.PressAndClear(); 
         }
@@ -54,8 +54,8 @@ public class Input
         while (true)
         {
             Console.Clear();
-            Output.Prompt($"Enter user's age (integer from 0 to {User.MaxAge}):");
-            Output.Prompt("To exit this section - enter \"exit\"\n");
+            Output.ShowPrompt($"Enter user's age (integer from 0 to {User.MaxAge}):");
+            Output.ShowPrompt("To exit this section - enter \"exit\"\n");
 
             var input = Console.ReadLine().Trim();
 
@@ -69,7 +69,7 @@ public class Input
                 return true;
             }
             
-            Output.Warning($"Invalid input. Please enter a valid age (integer between 0 and {User.MaxAge}).");
+            Output.ShowWarning($"Invalid input. Please enter a valid age (integer between 0 and {User.MaxAge}).");
             Output.PressAndClear();
         }
     }
@@ -79,8 +79,8 @@ public class Input
         while (true)
         {
             Console.Clear();
-            Output.Prompt("Enter user's e-mail:");
-            Output.Prompt("To exit this section - enter \"exit\"\n");
+            Output.ShowPrompt("Enter user's e-mail:");
+            Output.ShowPrompt("To exit this section - enter \"exit\"\n");
 
             var input = Console.ReadLine().Trim();
 
@@ -94,7 +94,7 @@ public class Input
                 return true;
             }
 
-            Output.Warning("Invalid input. Please enter a valid e-mail address.");
+            Output.ShowWarning("Invalid input. Please enter a valid e-mail address.");
             Output.PressAndClear();
         }
     }

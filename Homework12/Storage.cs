@@ -6,6 +6,24 @@ public class Storage
 {
     private static string _storagePath = "users.json";
 
+    public static bool ExistsAndNotEmpty (out string message)
+    {
+        if(!File.Exists(_storagePath))
+        {
+            message = "The storage is missing or has not been initialized yet. Try adding some data first.";
+            return false;
+        }
+        
+        if (new FileInfo(_storagePath).Length == 0)
+        {
+            message = "The storage is empty.";
+            return false;
+        }
+
+        message = "The storage exists and is not empty.";
+        return true;
+    }
+
     public static void Save(User user)
     {
         if (user.IsValid())
@@ -14,7 +32,7 @@ public class Storage
         }
         else
         {
-            Output.Error($"User ({user}) - incorrect data entered. Saving was interrupted.");
+            Output.ShowError($"User ({user}) - incorrect data entered. Saving was interrupted.");
         }
     }
 
@@ -24,12 +42,7 @@ public class Storage
 
         File.AppendAllText(_storagePath, json);
 
-        Output.Message($"User ({user}) - added to storage.");
-    }
-
-    public static bool Exists()
-    {
-        return File.Exists(_storagePath);
+        Output.ShowMessage($"User ({user}) - added to storage.");
     }
 
     public static string[] LoadAllUsersData()
@@ -42,7 +55,7 @@ public class Storage
         }
         catch (Exception ex)
         {
-            Output.Error("Failed to read users: " + ex.Message);
+            Output.ShowError("Failed to read users: " + ex.Message);
         }
 
         return data;

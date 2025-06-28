@@ -11,50 +11,41 @@ public class Output
         Console.Clear();
     }
 
-    public static void Header(string message)
+    public static void ShowHeader(string message)
     {
         Console.Write($"---=== {message.ToUpper()} ===---\n");
     }
 
-    public static void Prompt(string message)
+    public static void ShowPrompt(string message)
     {
         Console.Write($"\n==> {message}\n");
     }
 
-    public static void Warning(string message)
+    public static void ShowWarning(string message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write($"\n{message}\n\n");
         Console.ResetColor();
     }
 
-    public static void Error(string message)
+    public static void ShowError(string message)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.Write($"\n{message}\n\n");
         Console.ResetColor();
     }
 
-    public static void Message(string message)
+    public static void ShowMessage(string message)
     {
         Console.Write($"\n{message}\n\n");
     }
 
-    public static void ShowAllUsersData(string[] data)
+    public static void ShowAllUsersData(IEnumerable<string> data)
     {
-        if (!Storage.Exists())
+        if (Storage.ExistsAndNotEmpty(out var message))
         {
-            Warning("The storage is missing or has not been initialized yet. Try adding some data first.");
-            return;
-        }
+            ShowHeader("All Users:");
 
-        if (data.Length == 0)
-        {
-            Warning("The storage is empty");
-        }
-        else
-        {
-            Header("All Users:");
             foreach (var line in data)
             {
                 if (!string.IsNullOrWhiteSpace(line))
@@ -70,6 +61,10 @@ public class Output
                     catch { } // to ignore non-serializable (damaged) lines
                 }
             }
+        }
+        else
+        {
+            ShowWarning(message);
         }
     }
 }
