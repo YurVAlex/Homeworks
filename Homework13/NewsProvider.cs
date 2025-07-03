@@ -6,21 +6,15 @@ public class NewsProvider(string name)
 
     public string Name { get; set; } = (!string.IsNullOrEmpty(name)) ? name : "Unknown";
 
-    public void Subscribe(Category category, Action<string> dispatch)
-    {
-        if (!_dealCatalog.ContainsKey(category))
-        {
-            _dealCatalog[category] = [];
-        }
-
-        _dealCatalog[category].Add(dispatch);
-    }
+    public event EventHandler<NewsEventArgs>? NewsPublished;
 
     public void Notify(Category category, string message)
     {
-        if (_dealCatalog.TryGetValue(category, out var dispatches))
-        {
-            dispatches.ForEach(_ => _.Invoke(message));
-        }
+        OnNewsPublished(new NewsEventArgs(category, message));
+    }
+
+    protected virtual void OnNewsPublished(NewsEventArgs e)
+    {
+        NewsPublished?.Invoke(this, e);
     }
 }

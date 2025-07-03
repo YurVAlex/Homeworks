@@ -32,8 +32,13 @@ public class Client
             {
                 _subscriptionCatalog[provider].Add(category);
 
-                provider.Subscribe(category, message =>
-                    Console.WriteLine($"Id: {_id}({_name}) receives: {message}"));
+                provider.NewsPublished += (sender, args) =>
+                {
+                    if (args.Category == category)
+                    {
+                        Console.WriteLine($"Id: {_id}({_name}) receives: {args.Message}");
+                    }
+                };
             }
         }
     }
