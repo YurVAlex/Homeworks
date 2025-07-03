@@ -15,21 +15,21 @@ public class Program
         alex.AddSubscriptions(timesProvider);
         anatoly.AddSubscriptions(timesProvider, Category.Politics);
 
-        // This call will correctly not create a duplicate subscription due to the check in AddSubscriptions
+        // This call not create a duplicate subscription due to the check in AddSubscriptions
         lola.AddSubscriptions(timesProvider, Category.Sports);
 
         Console.WriteLine("--- Notifying Times Provider ---");
-        timesProvider.Notify(Category.Sports, "Breaking news! New record in sprint!");
-        timesProvider.Notify(Category.Politics, "Reality: Barabbas become next president of Barbados!");
+        timesProvider.Publish(Category.Sports, "Breaking news! New record in sprint!");
+        timesProvider.Publish(Category.Politics, "Reality: Barabbas become next president of Barbados!");
 
         Console.WriteLine("\n--- Notifying Al Jazeera Provider ---");
-        alJazeeraProvider.Notify(Category.Sports, "Breaking! New record in sprint!");
-        alJazeeraProvider.Notify(Category.Politics, "Awesome! Barabbas become next president of Barbados!");
+        alJazeeraProvider.Publish(Category.Sports, "Breaking! New record in sprint!");
+        alJazeeraProvider.Publish(Category.Politics, "Awesome! Barabbas become next president of Barbados!");
 
         Console.WriteLine("\n--- Notifying Times Provider (Technology) ---");
-        timesProvider.Notify(Category.Technology, "Technological breakthrough: release of the new version of .NET!");
+        timesProvider.Publish(Category.Technology, "Technological breakthrough: release of the new version of .NET!");
 
         Console.WriteLine("\n--- Notifying Comix Zone Provider ---");
-        comixZoneProvider.Notify(Category.Humor, "A programmer walks into a bar...");
+        comixZoneProvider.Publish(Category.Humor, "A programmer walks into a bar...");
     }
 }
